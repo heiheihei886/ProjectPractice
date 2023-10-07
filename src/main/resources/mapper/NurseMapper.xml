@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.NurseDao">
+
+    <select id="getNurseByName" resultType="Nurse">
+        select * from nurse where name = #{name}
+    </select>
+
+    <insert id="insertNurse" parameterType="Nurse">
+        insert into nurse (name, department, password)
+        values (#{name},#{department},#{password})
+    </insert>
+
+    <delete id="deleteNurse" parameterType="Nurse">
+        delete from nurse where name = #{name}
+    </delete>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.DiagSheetDao">
+    <select id="getDiagSheetById" resultType="DiagSheet">
+        select * from diagsheet where id = #{id}
+    </select>
+
+    <select id="getDiagSheetByUserid" resultType="DiagSheet">
+        select * from diagsheet where userid = #{userid}
+    </select>
+
+<!--    返回未诊断的诊单-->
+    <select id="getDiagSheetByDepartment" resultType="DiagSheet">
+        select * from diagsheet where department = #{department} and userid = #{userid} and ischeck = 0
+    </select>
+
+<!--    返回已经诊断的诊单-->
+    <select id="getDiagSheetByDepartment2" resultType="DiagSheet">
+        select * from diagsheet where department = #{department} and userid = #{userid} and ischeck = 1
+    </select>
+    
+    <update id="setResult" >
+        update diagsheet set result = #{result}, ischeck = 1  where id = #{id};
+    </update>
+
+    <update id="setContent">
+        update diagsheet set content = #{content} where id = #{id}
+    </update>
+
+    <insert id="insertSheet" parameterType="DiagSheet" >
+        insert into diagsheet (name, content, department, priority, date, userid)
+        values (#{name},#{content},#{department},#{priority},#{date},#{userid})
+    </insert>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.NursingRecordDao">
+
+    <select id="getNursingRecordByDepartment" resultType="NursingRecord">
+        select * from nursingrecord where department = #{department} and userid = #{userid}
+    </select>
+
+    <select id="getNursingRecordById" resultType="NursingRecord">
+        select * from nursingrecord where id = #{id}
+    </select>
+
+    <insert id="insertNursingRecord" parameterType="NursingRecord" >
+        insert into nursingrecord (name, content, priority, date, userid,department)
+        values (#{name},#{content},#{priority},#{date},#{userid},#{department})
+    </insert>
+
+</mapper>
