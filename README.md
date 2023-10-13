@@ -4,7 +4,7 @@ IDE：[Idea](https://www.jetbrains.com/idea/)
 数据库：Mysql
 ## 注意
 ### .sql文件导入
-登录MySQL，将medical_system.sql文件导入数据库，注意名称
+登录MySQL，将根目录的medical_system.sql文件导入数据库，注意名称
 ### 后端连接数据库的配置
 在src/main/resources/application.yml文件里
 ```
