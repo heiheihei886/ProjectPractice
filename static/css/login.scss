@@ -1,0 +1,101 @@
+page {
+  background: linear-gradient(to bottom, #41c6ff 0%, #27f0ea 100%);
+  height: 100vh; /* 使用视口高度来填充整个屏幕 */
+}
+
+.icon {
+  color: #ffffff;
+}
+
+.logo {
+  width: 100%;
+  height: 200px; /* 设置固定高度，或根据需求调整 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .img {
+    width: 100px; /* 设置固定宽度，或根据需求调整 */
+    height: 100px; /* 设置固定高度，或根据需求调整 */
+
+    image {
+      width: 100%;
+      border-radius: 100%;
+    }
+  }
+}
+
+.form {
+  width: 400px; /* 设置固定宽度，或根据需求调整 */
+  margin: 0 auto; /* 居中对齐 */
+  padding: 20px; /* 调整内边距，根据需求调整 */
+  font-size: 20px;
+
+  .username,
+  .password,
+  .code {
+    width: 100%;
+    height: 50px; /* 设置固定高度，或根据需求调整 */
+    display: flex;
+    align-items: center;
+    border-radius: 25px; /* 设置固定边框半径，或根据需求调整 */
+    background-color: rgba($color: #ffffff, $alpha: 0.1);
+    padding: 0 20px; /* 调整内边距，根据需求调整 */
+
+    input {
+      width: 100%;
+      height: 30px; /* 设置固定高度，或根据需求调整 */
+      color: rgba($color: #ffffff, $alpha: 0.8);
+      font-weight: 200;
+    }
+  }
+
+  .btn {
+    color: #f06c7a;
+    width: 100%;
+    height: 50px; /* 设置固定高度，或根据需求调整 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px; /* 设置固定边框半径，或根据需求调整 */
+    background-color: #fff;
+    font-size: 24px; /* 根据需求调整字体大小 */
+  }
+}
+
+.re {
+  .username {
+    position: relative;
+
+    .get-code {
+      position: absolute;
+      height: 50px; /* 设置固定高度，或根据需求调整 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 0;
+      padding: 0 20px; /* 调整内边距，根据需求调整 */
+      z-index: 3;
+
+      &:after {
+        content: " ";
+        width: 1px;
+        height: 30px; /* 设置固定高度，或根据需求调整 */
+        background-color: #fff;
+        position: absolute;
+        z-index: 3;
+        margin-right: 100%;
+        left: 0;
+        top: 15px; /* 设置固定位置，或根据需求调整 */
+      }
+    }
+  }
+
+  .res {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* 设置固定高度，或根据需求调整 */
+    color: rgba($color: #ffffff, $alpha: 0.8);
+  }
+}

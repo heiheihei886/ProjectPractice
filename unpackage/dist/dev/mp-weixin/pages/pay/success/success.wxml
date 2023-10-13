@@ -1,0 +1,1 @@
+<view><view class="icon"><image src="/static/img/success.png"></image></view><view class="tis">诊断结果提交成功</view><view class="back"><view data-event-opts="{{[['tap',[['toUser',['$event']]]]]}}" class="btn" bindtap="__e">医生中心</view></view></view>
