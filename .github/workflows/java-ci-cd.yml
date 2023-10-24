@@ -25,10 +25,15 @@ jobs:
       - name: Run Tests
         run: mvn test
 
-#  deploy:
-#    needs: build
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Deploy to Production
-#        # Add your deployment steps here
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: SSH into EC2 instance
+        run: |
+          echo "$AWS_SSH_PRIVATE_KEY" > ssh_key.pem
+          chmod 600 ssh_key.pem
+          ssh -i ssh_key.pem ubuntu@18.139.160.58 "cd ProjectPractice && git pull origin backend && ./deploy-script.sh"
+#        env:
+#          AWS_SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
