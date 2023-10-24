@@ -24,10 +24,10 @@ jobs:
       - name: Run Tests
         run: mvn test
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to Production
-        # Add your deployment steps here
+#  deploy:
+#    needs: build
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Deploy to Production
+#        # Add your deployment steps here
