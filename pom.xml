@@ -41,9 +41,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <artifactId>lombok</artifactId>
-        </dependency>
 
     </dependencies>
 
