@@ -71,14 +71,13 @@
 			</view>
 		</view>
 		<!-- 商品主图轮播 -->
-		<view class="swiper-box">
+		<!-- <view class="swiper-box">
 			<swiper circular="true" autoplay="true" @change="swiperChange">
 				<swiper-item v-for="swiper in swiperList" :key="swiper.id">
 					<image :src="swiper.img"></image>
 				</swiper-item>
 			</swiper>
-			<!-- <view class="indicator">{{currentSwiper+1}}/{{swiperList.length}}</view> -->
-		</view>
+		</view> -->
 		<!-- 标题 价格 -->
 		<view class="info-box goods-info">
 			<view class="price">病历报告</view>
@@ -211,7 +210,7 @@ export default {
 	},
 	//上拉加载，需要自己在page.json文件中配置"onReachBottomDistance"
 	onReachBottom() {
-		uni.showToast({ title: '触发上拉加载' });
+		uni.showToast({ title: ' ' });
 	},
 	mounted () {
 		
