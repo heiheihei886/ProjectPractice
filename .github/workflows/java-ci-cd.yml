@@ -34,6 +34,6 @@ jobs:
         run: |
           echo "$AWS_SSH_PRIVATE_KEY" > ssh_key.pem
           chmod 600 ssh_key.pem
-          ssh -o StrictHostKeyChecking=no -i ssh_key.pem ubuntu@18.139.160.58 "cd ProjectPractice && git pull origin backend && ./deploy-script.sh"
+          ssh -o StrictHostKeyChecking=no -i ssh_key.pem ubuntu@18.139.160.58 "pkill -f 'java -jar target/demo-0.0.1-SNAPSHOT.jar' && cd ProjectPractice && git pull origin backend && ./deploy-script.sh"
         env:
           AWS_SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
