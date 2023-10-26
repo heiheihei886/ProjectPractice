@@ -17,7 +17,7 @@ public class MedicalRecordController {
 
     @GetMapping("/getMedicalRecordByDepartment")
     public List<MedicalRecord> getMedicalRecordByDepartment(@RequestParam("department") String department){
-        System.out.println("配药记录获取成功");
+        System.out.println("Dispensing records obtained successfully");
         return medicalRecordService.getMedicalRecordByDepartment(department);
     }
 

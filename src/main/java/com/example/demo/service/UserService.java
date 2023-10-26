@@ -47,15 +47,15 @@ public class UserService {
         ApiResult response = new ApiResult();
         if(user == null){
             response.setCode(0);
-            response.setMessage("用户不存在");
+            response.setMessage("User does not exist");
             return response;
         }else if(!user.getPassword().equals(password)){
             response.setCode(1);
-            response.setMessage("密码错误");
+            response.setMessage("Password incorrect");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("登录成功");
+            response.setMessage("Login successfully");
             response.setData(user.getId());
             return response;
         }
@@ -67,12 +67,12 @@ public class UserService {
         ApiResult response = new ApiResult();
         if(user == null){
             response.setCode(0);
-            response.setMessage("注册成功");
+            response.setMessage("Register successfully");
             userDao.processRegister(username,password,name,sex,age);
             return response;
         }else{
             response.setCode(1);
-            response.setMessage("用户已存在");
+            response.setMessage("User exists");
             return response;
         }
     }
@@ -82,16 +82,14 @@ public class UserService {
         ApiResult response = new ApiResult();
         if(user == null){
             response.setCode(1);
-            response.setMessage("用户不存在");
+            response.setMessage("User does not exist");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("删除患者成功");
+            response.setMessage("Delete patient successfully");
             userDao.deleteUser(name);
             return response;
         }
     }
 
 }
-
-

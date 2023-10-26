@@ -23,15 +23,15 @@ public class DoctorService {
         ApiResult response = new ApiResult();
         if(doctor == null){
             response.setCode(0);
-            response.setMessage("用户不存在");
+            response.setMessage("User does not exist");
             return response;
         }else if(!doctor.getPassword().equals(password)){
             response.setCode(1);
-            response.setMessage("密码错误");
+            response.setMessage("Password incorrect");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("登录成功");
+            response.setMessage("Login successfully");
             response.setData(doctor.getDepartment());
             return response;
         }
@@ -42,12 +42,12 @@ public class DoctorService {
         ApiResult response= new ApiResult();
         if(doctor != null){
             response.setCode(0);
-            response.setMessage("用户已存在");
+            response.setMessage("User exists");
             return response;
         }
         else{
             response.setCode(2);
-            response.setMessage("新建成功");
+            response.setMessage("Add successfully");
             doctorDao.insertDoc(name, password, department);
             return response;
         }
@@ -58,11 +58,11 @@ public class DoctorService {
         ApiResult response = new ApiResult();
         if(doctor == null){
             response.setCode(0);
-            response.setMessage("用户不存在");
+            response.setMessage("User does not exist");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("删除成功");
+            response.setMessage("Delete successfully");
             doctorDao.deleteDoc(name);
             return response;
         }

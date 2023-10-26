@@ -22,13 +22,13 @@ public class DoctorController {
     public ApiResult insertDoc(@RequestParam("name")String name,
                                @RequestParam("password")String password,
                                @RequestParam("department")String department){
-        System.out.println("新建医生成功");
+        System.out.println("Add doctor successfully");
         return doctorService.insertDoc(name, password, department);
     }
 
     @GetMapping("/deleteDoc")
     public ApiResult deleteDoc(@RequestParam("name")String name){
-        System.out.println("删除医生成功");
+        System.out.println("Delete doctor successfully");
         return doctorService.deleteDoc(name);
     }
 }

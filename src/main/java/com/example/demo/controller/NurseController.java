@@ -16,7 +16,7 @@ public class NurseController {
     @GetMapping("/loginNurse")
     public ApiResult processLoginNurse(@RequestParam("name")String name,
                                        @RequestParam("password")String password){
-        System.out.println("护士登录成功");
+        System.out.println("Nurse login successfully");
         return nurseService.processLoginNurse(name,password);
     }
 
@@ -24,13 +24,13 @@ public class NurseController {
     public ApiResult insertNurse(@RequestParam("name")String name,
                                  @RequestParam("password")String password,
                                  @RequestParam("department")String department){
-        System.out.println("新建护士成功");
+        System.out.println("Add nurse successfully");
         return nurseService.insertNurse(name, password, department);
     }
 
     @GetMapping("/deleteNurse")
     public ApiResult deleteNurse(@RequestParam("name")String name){
-        System.out.println("成功删除护士");
+        System.out.println("Delete nurse successfully");
         return nurseService.deleteNurse(name);
     }
 }
