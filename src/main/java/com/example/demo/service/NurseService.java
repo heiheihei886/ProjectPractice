@@ -24,15 +24,15 @@ public class NurseService {
         ApiResult response = new ApiResult();
         if(nurse == null){
             response.setCode(0);
-            response.setMessage("用户不存在");
+            response.setMessage("User does not exist");
             return response;
         }else if(!nurse.getPassword().equals(password)){
             response.setCode(1);
-            response.setMessage("密码错误");
+            response.setMessage("Password incorrect");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("登录成功");
+            response.setMessage("Login successfully");
             response.setData(nurse.getDepartment());
             return response;
         }
@@ -43,11 +43,11 @@ public class NurseService {
         ApiResult response = new ApiResult();
         if(nurse != null){
             response.setCode(0);
-            response.setMessage("用户已存在");
+            response.setMessage("User exists");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("新建成功");
+            response.setMessage("Add successfully");
             nurseDao.insertNurse(name, password, department);
             return response;
         }
@@ -58,11 +58,11 @@ public class NurseService {
         ApiResult response = new ApiResult();
         if(nurse == null){
             response.setCode(0);
-            response.setMessage("用户不存在");
+            response.setMessage("User does not exist");
             return response;
         }else{
             response.setCode(2);
-            response.setMessage("删除成功");
+            response.setMessage("Delete successfully");
             nurseDao.deleteNurse(name);
             return response;
         }
