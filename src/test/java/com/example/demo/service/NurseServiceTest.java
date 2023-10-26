@@ -41,17 +41,17 @@ public class NurseServiceTest {
         // Case 1: Login with a non-existing nurse
         response = nurseService.processLoginNurse("nonExistingNurse", "password");
         assertEquals(0, response.getCode());
-        assertEquals("用户不存在", response.getMessage());
+        assertEquals("User does not exist", response.getMessage());
 
         // Case 2: Incorrect password
         response = nurseService.processLoginNurse("existingNurse", "incorrectPassword");
         assertEquals(1, response.getCode());
-        assertEquals("密码错误", response.getMessage());
+        assertEquals("Password incorrect", response.getMessage());
 
         // Case 3: Successful login
         response = nurseService.processLoginNurse("existingNurse", "nursePassword");
         assertEquals(2, response.getCode());
-        assertEquals("登录成功", response.getMessage());
+        assertEquals("Login successfully", response.getMessage());
         assertNotNull(response.getData());
     }
 
@@ -62,12 +62,12 @@ public class NurseServiceTest {
         // Case 1: Insert an existing nurse
         response = nurseService.insertNurse("existingNurse", "password", "Department A");
         assertEquals(0, response.getCode());
-        assertEquals("用户已存在", response.getMessage());
+        assertEquals("User exists", response.getMessage());
 
         // Case 2: Insert a new nurse
         response = nurseService.insertNurse("newNurse", "password", "Department B");
         assertEquals(2, response.getCode());
-        assertEquals("新建成功", response.getMessage());
+        assertEquals("Add successfully", response.getMessage());
     }
 
     @Test
@@ -77,11 +77,11 @@ public class NurseServiceTest {
         // Case 1: Delete a non-existing nurse
         response = nurseService.deleteNurse("nonExistingNurse");
         assertEquals(0, response.getCode());
-        assertEquals("用户不存在", response.getMessage());
+        assertEquals("User does not exist", response.getMessage());
 
         // Case 2: Delete an existing nurse
         response = nurseService.deleteNurse("existingNurse");
         assertEquals(2, response.getCode());
-        assertEquals("删除成功", response.getMessage());
+        assertEquals("Delete successfully", response.getMessage());
     }
 }

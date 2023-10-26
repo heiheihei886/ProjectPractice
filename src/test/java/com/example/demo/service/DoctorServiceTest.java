@@ -41,17 +41,17 @@ public class DoctorServiceTest {
         // Case 1: Login with a non-existing doctor
         response = doctorService.processLoginDoc("nonExistingDoctor", "password");
         assertEquals(0, response.getCode());
-        assertEquals("用户不存在", response.getMessage());
+        assertEquals("User does not exist", response.getMessage());
 
         // Case 2: Incorrect password
         response = doctorService.processLoginDoc("existingDoctor", "incorrectPassword");
         assertEquals(1, response.getCode());
-        assertEquals("密码错误", response.getMessage());
+        assertEquals("Password incorrect", response.getMessage());
 
         // Case 3: Successful login
         response = doctorService.processLoginDoc("existingDoctor", "doctor123");
         assertEquals(2, response.getCode());
-        assertEquals("登录成功", response.getMessage());
+        assertEquals("Login successfully", response.getMessage());
         assertNotNull(response.getData());
     }
 
@@ -62,12 +62,12 @@ public class DoctorServiceTest {
         // Case 1: Insert an existing doctor
         response = doctorService.insertDoc("existingDoctor", "password", "Department A");
         assertEquals(0, response.getCode());
-        assertEquals("用户已存在", response.getMessage());
+        assertEquals("User exists", response.getMessage());
 
         // Case 2: Insert a new doctor
         response = doctorService.insertDoc("newDoctor", "password", "Department B");
         assertEquals(2, response.getCode());
-        assertEquals("新建成功", response.getMessage());
+        assertEquals("Add successfully", response.getMessage());
     }
 
     @Test
@@ -77,11 +77,11 @@ public class DoctorServiceTest {
         // Case 1: Delete a non-existing doctor
         response = doctorService.deleteDoc("nonExistingDoctor");
         assertEquals(0, response.getCode());
-        assertEquals("用户不存在", response.getMessage());
+        assertEquals("User does not exist", response.getMessage());
 
         // Case 2: Delete an existing doctor
         response = doctorService.deleteDoc("existingDoctor");
         assertEquals(2, response.getCode());
-        assertEquals("删除成功", response.getMessage());
+        assertEquals("Delete successfully", response.getMessage());
     }
 }

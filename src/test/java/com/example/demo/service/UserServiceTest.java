@@ -45,17 +45,17 @@ public class UserServiceTest {
         // Case 1: Non-existing user
         response = userService.processLogin("nonExistingUser", "password");
         assertEquals(0, response.getCode());
-        assertEquals("用户不存在", response.getMessage());
+        assertEquals("User does not exist", response.getMessage());
 
         // Case 2: Incorrect password
         response = userService.processLogin("existingUser", "incorrectPassword");
         assertEquals(1, response.getCode());
-        assertEquals("密码错误", response.getMessage());
+        assertEquals("Password incorrect", response.getMessage());
 
         // Case 3: Successful login
         response = userService.processLogin("existingUser", "password123");
         assertEquals(2, response.getCode());
-        assertEquals("登录成功", response.getMessage());
+        assertEquals("Login successfully", response.getMessage());
         assertNotNull(response.getData());
     }
 
@@ -66,12 +66,12 @@ public class UserServiceTest {
         // Case 1: Register an existing user
         response = userService.processRegister("existingUser", "password", "Name", "Male", 25);
         assertEquals(1, response.getCode());
-        assertEquals("用户已存在", response.getMessage());
+        assertEquals("User exists", response.getMessage());
 
         // Case 2: Register a new user
         response = userService.processRegister("newUser", "password", "Name", "Female", 30);
         assertEquals(0, response.getCode());
-        assertEquals("注册成功", response.getMessage());
+        assertEquals("Register successfully", response.getMessage());
     }
 
     @Test
@@ -81,12 +81,12 @@ public class UserServiceTest {
         // Case 1: Delete a non-existing user
         response = userService.deleteUser("nonExistingUser");
         assertEquals(1, response.getCode());
-        assertEquals("用户不存在", response.getMessage());
+        assertEquals("User does not exist", response.getMessage());
 
         // Case 2: Delete an existing user
         response = userService.deleteUser("existingUser");
         assertEquals(2, response.getCode());
-        assertEquals("删除患者成功", response.getMessage());
+        assertEquals("Delete patient successfully", response.getMessage());
     }
 
 }
