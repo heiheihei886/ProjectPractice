@@ -8,15 +8,15 @@
 		<!-- 账号密码输入框 -->
 		<view class="form">
 			<view class="username">
-				<input placeholder="请输入账号" v-model="username" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your username" v-model="username" placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
 			<view class="password">
-				<input placeholder="请输入密码" v-model="password" password=true placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your password" v-model="password" password=true placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
-			<view class="btn" @tap="doLogin()">登 录</view>
+			<view class="btn" @tap="doLogin()">Login</view>
 			<view class="res">
-				<view @tap="toPage('register')">用户注册</view>
-				<view @tap="toPage('resetpasswd')">忘记密码</view>
+				<view @tap="toPage('register')">User Registration</view>
+				<view @tap="toPage('resetpasswd')">Forgot Password</view>
 			</view>
 		</view>
 		<!-- 第三方登录 -->
@@ -87,7 +87,7 @@
 									},
 									success: function () {
 										uni.hideLoading()
-										uni.showToast({title: '登录成功',icon:"success"});
+										uni.showToast({title: 'Login successfully',icon:"success"});
 										setTimeout(function(){
 											uni.navigateBack();
 										},300)
@@ -164,7 +164,7 @@
 				let password = this.password;
 				if(username==''){
 				  uni.showToast({
-				      title: '用户名不能为空',
+				      title: 'Username cannot be empty',
 				      duration: 2000,
 					  icon:'none'
 				  });
@@ -172,7 +172,7 @@
 				}
 				if(password==''){
 				  uni.showToast({
-				      title: '密码不能为空',
+				      title: 'Password cannot be empty',
 				      duration: 2000,
 					  icon:'none'
 				  });
@@ -181,7 +181,7 @@
 				console.log("帐号密码======="+this.username+this.password)
 				if(username.charAt(0)=='1'){//患者的账号开头
 					uni.request({
-						url: 'http://localhost:8081/login',
+						url: 'http://52.77.228.143:8080/login',
 						method:'GET',
 						data: {
 							username:this.username,
@@ -216,14 +216,14 @@
 								// this.password=''
 							}
 						},
-						fail:(res)=> {
-							console.log(res.data);
-						}
+						//fail:(res)=> {
+							//console.log(res.data);
+						//}
 					});
 				}
 				else if(username.charAt(0) == '2' && username.charAt(1) != '0'){//检测到医生账号登录
 					uni.request({
-						url: 'http://localhost:8081/loginDoc',
+						url: 'http://52.77.228.143:8080/loginDoc',
 						method:'GET',
 						data: {
 							name:this.username,
@@ -258,13 +258,13 @@
 								// this.password=''
 							}
 						},
-						fail:(res)=> {
-							console.log(res.data);
-						}
+						//fail:(res)=> {
+							//console.log(res.data);
+						//}
 					});
 				}else if(username.charAt(0) == '3'){//检测到护士账号登录
 					uni.request({
-						url: 'http://localhost:8081/loginNurse',
+						url: 'http://52.77.228.143:8080/loginNurse',
 						method:'GET',
 						data: {
 							name:this.username,
@@ -299,27 +299,54 @@
 								// this.password=''
 							}
 						},
-						fail:(res)=> {
-							console.log(res.data);
-						}
+						//fail:(res)=> {
+							//console.log(res.data);
+						//}
 					});
 				}else if(username.charAt(0) == '0'){//检测到管理员账号登录
-					uni.showToast({
-						title: '登录成功',
-						duration: 1200
+					uni.request({
+						url: 'http://52.77.228.143:8080/loginAdmin',
+						method:'GET',
+						data: {
+							name:this.username,
+							password:this.password
+						},				
+						success:(res) =>{
+							console.log(res.data);
+							if(res.data.code=="2"){
+								uni.showToast({
+									title: res.data.message,
+									duration: 1200
+								});
+								//初始化参数
+								//uni.setStorageSync('userid',res.data.data);
+								uni.setStorageSync('username',username);
+								//let temp = uni.getStorageSync('userid')
+								//console.log(temp)
+								console.log("clear")
+								setTimeout(function(){
+									uni.navigateTo({
+										url: '../tabBar/home/home_admin'
+									})
+								},1200)
+							}else{
+								uni.showToast({
+									title: res.data.message,
+									duration: 2000,
+									icon:'none'
+								});
+								//清空输入框
+								// this.username=''
+								// this.password=''
+							}
+						},
+						//fail:(res)=> {
+							//console.log(res.data);
+						//}
 					});
-					//初始化参数
-					// let temp = uni.getStorageSync('userid')
-					// console.log(temp)
-					console.log("clear")
-					setTimeout(function(){
-						uni.navigateTo({
-							url:'../tabBar/home/home_admin'
-						})
-					},1200)
 				}else if(username.charAt(0) == '2'&&username.charAt(1)=='0'){//检测到住院医生账号登录
 					uni.request({
-						url: 'http://localhost:8081/loginDoc',
+						url: 'http://52.77.228.143:8080/loginDoc',
 						method:'GET',
 						data: {
 							name:this.username,
@@ -354,14 +381,14 @@
 								// this.password=''
 							}
 						},
-						fail:(res)=> {
-							console.log(res.data);
-						}
+						//fail:(res)=> {
+							//console.log(res.data);
+						//}
 					});
 				}
 				
 				// uni.request({
-				// 	url: 'http://localhost:8081/login',
+				// 	url: 'http://52.77.228.143:8080/login',
 				// 	method:'GET',
 				// 	data: {
 				// 		username:this.username,

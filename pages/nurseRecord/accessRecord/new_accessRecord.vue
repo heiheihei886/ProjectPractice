@@ -5,50 +5,58 @@
 		<view class="order">
 			<view class="row">
 				<view class="left">
-					患者名称 :
+					Username:
 				</view>
 				<view class="right">
-					<input placeholder="请填写患者名称" v-model="note_username" />
+					<input placeholder="Please enter the patient's username" v-model="note_username" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					名称 :
+					Nursing name:
 				</view>
 				<view class="right">
-					<input placeholder="请填写护理名称" v-model="note_name" />
+					<input placeholder="Please enter the nursing name" v-model="note_name" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					科室 :
+					Department:
 				</view>
 				<view class="right">
-					<input placeholder="请填写科室" v-model="note_department" />
+					<picker v-model="note_department" :range="departments" @change="onChange">
+					    <view class="picker-content">{{ note_department || 'Please select the department' }}</view>
+					</picker>
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					出入记录内容 :
+					Access content:
 				</view>
 				<view class="right">
-					<input placeholder="请填写护理内容" v-model="note_content" />
+					<input placeholder="Please enter the access content" v-model="note_content" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					优先级 :
+					Priority:
 				</view>
 				<view class="right">
-					<input placeholder="请填写优先级" v-model="note_priority" />
+					<!-- <input placeholder="请填写优先级" v-model="note_priority" /> -->
+					<picker v-model="note_priority" :range="priorities" @change="onChange1">
+					    <view class="picker-content">{{ note_priority || 'Please select the priority' }}</view>
+					</picker>
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					日期 :
+					Date:
 				</view>
 				<view class="right">
-					<input placeholder="请填写日期" v-model="note_date" />
+					<!-- <input placeholder="请填写日期" v-model="note_date" /> -->
+					<picker  mode="date" :value="note_date" @change="onChange2">
+					    <view class="picker-content">{{ note_date || 'Please select the date' }}</view>
+					</picker>
 				</view>
 			</view>
 			
@@ -60,7 +68,7 @@
 		<view class="footer">
 			<view class="settlement">
 				<!-- <view class="sum">合计:<view class="money">￥{{sumPrice|toFixed}}</view></view> -->
-				<view class="btn" @tap="toPay">提交</view>
+				<view class="btn" @tap="toPay">Submit</view>
 			</view>
 		</view>
 	</view>
@@ -70,6 +78,8 @@
 	export default {
 		data() {
 			return {
+				departments: ['Internal medicine', 'Surgery', 'Pediatrics', 'Orthopedic', 'Dermatology'],
+				priorities: ['High', 'Medium', 'Low'],
 				buylist:[],		//订单列表
 				goodsPrice:0.0,	//商品合计价格
 				sumPrice:0.0,	//用户付款价格
@@ -133,7 +143,7 @@
 			
 			// getUserid(){
 			// 	uni.request({
-			// 		url:'http://localhost:8081/getUserid',
+			// 		url:'http://52.77.228.143:8080/getUserid',
 			// 		data:{
 			// 			username:this.note_username
 			// 		},
@@ -156,7 +166,7 @@
 			getUserid(){
 				return new Promise((resolve, reject) => {	
 					uni.request({
-						url:'http://localhost:8081/getUserid',
+						url:'http://52.77.228.143:8080/getUserid',
 						data:{
 							username:this.note_username
 						},
@@ -168,11 +178,22 @@
 				})	
 			},
 			
+			onChange(event) {
+			      this.note_department = this.departments[event.detail.value]
+			},
+			
+			onChange1(event) {
+			      this.note_priority = this.priorities[event.detail.value]
+			},
+			
+			onChange2 :function(e){
+				this.note_date = e.detail.value
+			},
 			//提交诊断结果
 			async toPay(){
 				await this.getUserid()	
 				uni.request({
-					url:'http://localhost:8081/insertAccessRecord',
+					url:'http://52.77.228.143:8080/insertAccessRecord',
 					
 					data:{
 						name : this.note_name,
@@ -184,7 +205,7 @@
 					},
 					success:()=> {
 						uni.showToast({
-							title:"新增成功",
+							title:"Create successfully",
 							duration:1200
 						});
 						setTimeout(function(){
@@ -195,7 +216,7 @@
 					}
 				});
 				uni.showLoading({
-					title:'正在提交信息...',
+					title:'Submitting information...',
 					duration: 1200
 				});
 				setTimeout(function(){
@@ -350,6 +371,7 @@
 			font-size: 26upx;
 			color: #999;
 			input{
+				width: 200%;
 				font-size: 26upx;
 				color: #999;
 			}

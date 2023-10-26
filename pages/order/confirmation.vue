@@ -30,7 +30,7 @@
 					</view>
 					<view class="info">
 						<view class="title">{{row.name}}</view>
-						<view class="spec">日期：{{row.date}} </view>
+						<view class="spec">Date:{{row.date}} </view>
 						<view class="price-number">
 							<view class="price">{{row.priority}}</view>
 							<view class="number">
@@ -45,18 +45,18 @@
 		<view class="order">
 			<view class="row">
 				<view class="left">
-					诊断结果 :
+					Diagnostic Result:
 				</view>
 				<view class="right">
-					<input placeholder="请填写诊断内容" v-model="note_nierong" />
+					<input placeholder="Please enter the diagnosis content" v-model="note_nierong" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					备注 :
+					Remark:
 				</view>
 				<view class="right">
-					<input placeholder="请填写备注内容" v-model="note_beizhu" />
+					<input placeholder="Please enter the remarks" v-model="note_beizhu" />
 				</view>
 			</view>
 		</view>
@@ -67,7 +67,7 @@
 		<view class="footer">
 			<view class="settlement">
 				<!-- <view class="sum">合计:<view class="money">￥{{sumPrice|toFixed}}</view></view> -->
-				<view class="btn" @tap="toPay">提交诊断结果</view>
+				<view class="btn" @tap="toPay">Submit diagnostic result</view>
 			</view>
 		</view>
 	</view>
@@ -149,26 +149,26 @@
 					goodsid.push(this.buylist[i].id);
 				}
 				if(paymentOrder.length==0){
-					uni.showToast({title:'信息有误，请重新填写',icon:'none'});
+					uni.showToast({title:'The information is incorrect. Please fill it in again',icon:'none'});
 					return ;
 				}
 				
 				
 				uni.request({
-					url:'http://localhost:8081/setResult',
+					url:'http://52.77.228.143:8080/setResult',
 					
 					data:{
 						id : this.buylist[0].id,
 						result : this.note_nierong
 					},
 					success() {
-						console.log("提交成功")
+						console.log("Submit successfully")
 					}
 				})
 				
 				//本地模拟订单提交UI效果
 				uni.showLoading({
-					title:'正在提交诊断结果...'
+					title:'Submitting diagnostic result...'
 				})
 				setTimeout(()=>{
 					uni.setStorage({
@@ -317,6 +317,7 @@
 			font-size: 26upx;
 			color: #999;
 			input{
+				width: 200%;
 				font-size: 26upx;
 				color: #999;
 			}

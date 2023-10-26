@@ -2,13 +2,13 @@
 	<view>
 		<view v-if="showHeader" class="status" :style="{position:headerPosition,top:statusTop}"></view>
 		<view v-if="showHeader" class="header" :style="{position:headerPosition,top:headerTop}">
-			<view class="title">待诊断</view>
+			<view class="title">To be diagnosed</view>
 		</view>
 		<!-- 占位 -->
 		<!-- <view v-if="showHeader" class="place"></view> -->
 		<!-- 商品列表 -->
 		<view class="goods-list">
-			<view class="tis" v-if="goodsList.length==0">是空的哦~</view>
+			<view class="tis" v-if="goodsList.length==0">Empty</view>
             <view class="row" v-for="(row,index) in goodsList" :key="index" >
 				<!-- 删除按钮 -->
 				<view class="menu" @tap.stop="deleteGoods(row.id)">
@@ -31,7 +31,7 @@
 							<view class="title">{{row.name}}</view>
 							<view class="spec">{{row.sex}}</view>
 							<view class="price-number">
-								<view class="price">{{row.age}}岁</view>
+								<view class="price">{{row.age}} year(s) old</view>
 							</view>
 						</view>
 					</view>
@@ -44,9 +44,9 @@
 				<view class="checkbox">
 					<view :class="[isAllselected?'on':'']"></view>
 				</view>
-				<view class="text">全选</view>
+				<view class="text">Select all</view>
 			</view>
-			<view class="delBtn" @tap="deleteList" v-if="selectedList.length>0">删除</view>
+			<view class="delBtn" @tap="deleteList" v-if="selectedList.length>0">Delete</view>
 			<view class="settlement">
 				<!-- <view class="sum">合计:<view class="money">￥{{sumPrice}}</view></view> -->
 				<!-- <view class="btn" @tap="toConfirmation">诊断</view> -->
@@ -112,7 +112,7 @@
 			getUserList_doc(){
 				console.log(this.department)
 				uni.request({
-					url:'http://localhost:8081/getUserList2',
+					url:'http://52.77.228.143:8080/getUserList2',
 					data:{
 						department:this.department
 					},

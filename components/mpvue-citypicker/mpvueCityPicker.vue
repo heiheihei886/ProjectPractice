@@ -3,8 +3,8 @@
     <div :class="{'pickerMask':showPicker}" @click="maskClick" catchtouchmove="true"></div>
     <div class="mpvue-picker-content " :class="{'mpvue-picker-view-show':showPicker}">
       <div class="mpvue-picker__hd" catchtouchmove="true">
-        <div class="mpvue-picker__action" @click="pickerCancel">取消</div>
-        <div class="mpvue-picker__action" :style="{color:themeColor}" @click="pickerConfirm">确定</div>
+        <div class="mpvue-picker__action" @click="pickerCancel">Cancel</div>
+        <div class="mpvue-picker__action" :style="{color:themeColor}" @click="pickerConfirm">Confirm</div>
       </div>
       <picker-view indicator-style="height: 40px;" class="mpvue-picker-view" :value="pickerValue" @change="pickerChange">
         <block>

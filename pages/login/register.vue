@@ -8,23 +8,25 @@
 		<view class="form re">
 			<view class="username">
 				<!-- <view class="get-code" :style="{'color':getCodeBtnColor}" @click.stop="getCode()">{{getCodeText}}</view> -->
-				<input placeholder="请输入用户名" v-model="username" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your username" v-model="username" placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
 			<view class="password">
-				<input placeholder="请输入密码" v-model="password" password=true placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your password" v-model="password" password=true placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
 			<view class="username">
-				<input placeholder="请输入姓名" v-model="name" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your name" v-model="name" placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
 			<view class="username">
-				<input placeholder="请输入性别" v-model="sex" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<picker v-model="note_sex" :range="sexs" @change="onChange">
+				    <view class="picker-content">{{ note_sex || 'Please select your sex'}}</view>
+				</picker>
 			</view>
 			<view class="username">
-				<input placeholder="请输入年龄" v-model="age" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your age" v-model="age" placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
-			<view class="btn" @tap="doReg">立即注册</view>
+			<view class="btn" @tap="doReg">Register Now</view>
 			<view class="res">
-				<view @tap="toLogin">已有账号立即登录</view>
+				<view @tap="toLogin">Login</view>
 			</view>
 		</view>
 		
@@ -36,11 +38,12 @@
 	export default {
 		data() {
 			return {
+				sexs: ['Male', 'Female'],
 				username:"",
 				code:'',
 				password:"",
 				name:'',
-				sex:'',
+				note_sex:'',
 				age:'',
 				getCodeText:'获取验证码',
 				getCodeBtnColor:"#ffffff",
@@ -89,16 +92,20 @@
 				},1000)
 			},
 			
+			onChange(event) {
+			      this.note_sex = this.sexs[event.detail.value]
+			},
+			
 			doReg(){
 				if(this.username.charAt(0)=='1'){
 					uni.request({
-						url:'http://localhost:8081/register',
+						url:'http://52.77.228.143:8080/register',
 						method:'GET',
 						data:{
 							username:this.username,
 							password:this.password,
 							name:this.name,
-							sex:this.sex,
+							sex:this.note_sex,
 							age:this.age
 						},
 						success: (res) => {
@@ -190,4 +197,7 @@
 
 <style lang="scss">
 	@import "../../static/css/login.scss";
+	.picker-view {
+		font-size: 20px;
+	}
 </style>

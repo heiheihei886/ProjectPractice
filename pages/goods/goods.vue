@@ -42,7 +42,7 @@
 			</view> -->
 			<view class="btn">
 				<!-- <view class="joinCart" @tap="joinCart">加入购物车</view> -->
-				<view class="buy" @tap="buy">前往诊断</view>
+				<view class="buy" @tap="buy">Go to diagnosis</view>
 			</view>
 		</view>
 		<!-- share弹窗 -->
@@ -93,7 +93,7 @@
 						<view class="description">{{item.description}}</view>
 					</view>
 				</view>
-				<view class="btn"><view class="button" @tap="hideService">完成</view></view>
+				<view class="btn"><view class="button" @tap="hideService">Complete</view></view>
 			</view>
 		</view>
 		<!-- 规格-模态层弹窗 -->
@@ -102,12 +102,12 @@
 			<view class="mask"></view>
 			<view class="layer" @tap.stop="discard">
 				<view class="content">
-					<view class="title">选择规格：</view>
+					<view class="title">Select specifications:</view>
 					<view class="sp">
 						<view v-for="(item,index) in goodsData.spec" :class="[index==selectSpec?'on':'']" @tap="setSelectSpec(index)" :key="index">{{item}}</view>
 					</view>
 					<view class="length" v-if="selectSpec!=null">
-						<view class="text">数量</view>
+						<view class="text">Quantity</view>
 						<view class="number">
 							<view class="sub" @tap.stop="sub">
 								<view class="icon jian"></view>
@@ -121,7 +121,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="btn"><view class="button" @tap="hideSpec">完成</view></view>
+				<view class="btn"><view class="button" @tap="hideSpec">Complete</view></view>
 			</view>
 		</view>
 		<!-- 商品主图轮播 -->
@@ -135,7 +135,7 @@
 		</view>
 		<!-- 标题 价格 -->
 		<view class="info-box goods-info">
-			<view class="price">诊单报告</view>
+			<view class="price">Medical Report</view>
 			<view class="title">
 				{{goodsData.name}}
 			</view>
@@ -143,31 +143,31 @@
 		<!-- 服务-规则选择 -->
 		<view class="info-box spec">
 			<view class="row" >
-				<view class="text">姓名</view>
+				<view class="text">Name</view>
 				<view class="content">
 					<view>{{userData.name}}</view>				
 				</view>
 			</view>
 			<view class="row" >
-				<view class="text">性别</view>
+				<view class="text">Sex</view>
 				<view class="content">
 					<view>{{userData.sex}}</view>				
 				</view>
 			</view>
 			<view class="row" >
-				<view class="text">年龄</view>
+				<view class="text">Age</view>
 				<view class="content">
 					<view>{{userData.age}}</view>				
 				</view>
 			</view>
 			<view class="row" >
-				<view class="text">优先级</view>
+				<view class="text">Priority</view>
 				<!-- 诊单优先级 -->
 				<view class="content"><view class="serviceitem" >{{goodsData.priority}}</view></view>
 				<!-- <view class="arrow"><view class="icon xiangyou"></view></view> -->
 			</view>
 			<view class="row" >
-				<view class="text">日期</view>
+				<view class="text">Date</view>
 				<view class="content">
 					<view>{{goodsData.date}}</view>				
 				</view>
@@ -176,7 +176,7 @@
 		<!-- 评价 -->
 		<view class="info-box comments" id="comments">
 			<view class="row">
-				<view class="text">病情描述</view>
+				<view class="text">Disease description</view>
 				<view class="arrow" @tap="toRatings">
 				</view>
 			</view>
@@ -188,7 +188,7 @@
 		</view>
 		<view class="info-box comments" id="comments">
 			<view class="row">
-				<view class="text">诊断结果</view>
+				<view class="text">Diagnostic result</view>
 				<view class="arrow" @tap="toRatings">
 				</view>
 			</view>
@@ -200,7 +200,7 @@
 		</view>
 		<!-- 详情 -->
 		<view class="description">
-			<view class="title">———— 病情详情 ————</view>
+			<view class="title">———— Details of disease ————</view>
 			<view class="content"><rich-text :nodes="descriptionStr"></rich-text></view>
 		</view>
 	</view>
@@ -288,7 +288,7 @@ export default {
 	},
 	//上拉加载，需要自己在page.json文件中配置"onReachBottomDistance"
 	onReachBottom() {
-		uni.showToast({ title: '触发上拉加载' });
+		uni.showToast({ title: 'Loading' });
 	},
 	mounted () {
 		
@@ -298,7 +298,7 @@ export default {
 		async getUserinfo(){
 			await this.getDiagSheet()
 			uni.request({
-				url:'http://localhost:8081/getUser',
+				url:'http://52.77.228.143:8080/getUser',
 				data:{
 					id:this.goodsData.userid
 				},
@@ -309,7 +309,7 @@ export default {
 			})			
 		},
 		// 	uni.request({
-		// 		url:'http://localhost:8081/getUser',
+		// 		url:'http://52.77.228.143:8080/getUser',
 		// 		data:{
 		// 			id:this.goodsData.userid
 		// 		},
@@ -323,7 +323,7 @@ export default {
 		getDiagSheet(){
 			return new Promise((resolve, reject) => {
 				uni.request({
-					url:'http://localhost:8081/getDiagSheet',
+					url:'http://52.77.228.143:8080/getDiagSheet',
 					data:{
 						id:this.goodsId
 					},

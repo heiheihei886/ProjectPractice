@@ -5,18 +5,44 @@
 		<view class="order">
 			<view class="row">
 				<view class="left">
-					新增账号 :
+					Username:
 				</view>
 				<view class="right">
-					<input placeholder="请填输入新增账号" v-model="note_name" />
+					<input placeholder="Please enter the new username" v-model="note_username" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					默认密码 :
+					Password:
 				</view>
 				<view class="right">
-					<input placeholder="请填输入默认密码" v-model="note_password" />
+					<input placeholder="Please enter the password" v-model="note_password" />
+				</view>
+			</view>
+			<view class="row">
+				<view class="left">
+					Name:
+				</view>
+				<view class="right">
+					<input placeholder="Please enter the name" v-model="note_name" />
+				</view>
+			</view>
+			<view class="row">
+				<view class="left">
+					Sex:
+				</view>
+				<view class="right">
+					<picker v-model="note_sex" :range="sexs" @change="onChange">
+					    <view class="picker-content">{{ note_sex || 'Please select the sex' }}</view>
+					</picker>
+				</view>
+			</view>
+			<view class="row">
+				<view class="left">
+					Age:
+				</view>
+				<view class="right">
+					<input placeholder="Please enter the age" v-model="note_age" />
 				</view>
 			</view>
 			
@@ -27,7 +53,7 @@
 		<view class="footer">
 			<view class="settlement">
 				<!-- <view class="sum">合计:<view class="money">￥{{sumPrice|toFixed}}</view></view> -->
-				<view class="btn" @tap="toPay">提交</view>
+				<view class="btn" @tap="toPay">Submit</view>
 			</view>
 		</view>
 	</view>
@@ -37,13 +63,16 @@
 	export default {
 		data() {
 			return {
+				sexs: ['Male', 'Female'],
 				buylist:[],		//订单列表
 				goodsPrice:0.0,	
 				sumPrice:0.0,	
 				freight:12.00,	
 				note_name:'',
 				note_password:'',
-				note_department:'',
+				note_username:'',
+				note_sex:'',
+				note_age:'',
 				int:1200,		//抵扣积分
 				deduction:0,	//抵扣价格
 				
@@ -99,11 +128,15 @@
 					}
 				});
 			},
+			
+			onChange(event) {
+			      this.note_sex = this.sexs[event.detail.value]
+			},
 			//提交诊断结果
 			toPay(){
-				if(this.note_name == ''){
+				if(this.note_username == ''){
 					uni.showToast({
-						title: '用户名不能为空',
+						title: 'Usesrname cannot be empty',
 						duration: 2000,
 						icon:'none'
 					});
@@ -111,17 +144,20 @@
 				}
 				if(this.note_password == ''){
 					uni.showToast({
-						title: '密码不能为空',
+						title: 'Password cannot be empty',
 						duration: 2000,
 						icon:'none'
 					})
 				}
-				if(this.note_name.charAt(0) == '3'){
+				if(this.note_username.charAt(0) == '1'){
 					uni.request({
-						url:'http://localhost:8081/register',
+						url:'http://52.77.228.143:8080/register',
 						data:{
-							username : this.note_name,
-							password: this.note_password						
+							username : this.note_username,
+							password: this.note_password,
+							name: this.note_name,
+							sex: this.note_sex,
+							age: this.note_age,
 						},
 						success(res) {
 							if(res.data.code=="2"){
@@ -145,7 +181,7 @@
 					});
 				}else{
 					uni.showToast({
-						title: '新建账号请以3开头',
+						title: 'To add a patient acccount, please start with 1',
 						duration: 2000,
 						icon:'none',
 					})
@@ -306,6 +342,7 @@
 			font-size: 26upx;
 			color: #999;
 			input{
+				width: 200%;
 				font-size: 26upx;
 				color: #999;
 			}

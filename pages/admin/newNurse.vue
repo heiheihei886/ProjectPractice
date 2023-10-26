@@ -5,26 +5,28 @@
 		<view class="order">
 			<view class="row">
 				<view class="left">
-					新增账号 :
+					Username:
 				</view>
 				<view class="right">
-					<input placeholder="请填输入新增账号" v-model="note_name" />
+					<input placeholder="Please enter the new username" v-model="note_name" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					默认密码 :
+					Password:
 				</view>
 				<view class="right">
-					<input placeholder="请填输入默认密码" v-model="note_password" />
+					<input placeholder="Please enter the password" v-model="note_password" />
 				</view>
 			</view>
 			<view class="row">
 				<view class="left">
-					科室 :
+					Department:
 				</view>
 				<view class="right">
-					<input placeholder="请填写科室" v-model="note_department" />
+					<picker v-model="note_department" :range="departments" @change="onChange">
+					    <view class="picker-content">{{ note_department || 'Please select the department' }}</view>
+					</picker>
 				</view>
 			</view>
 			
@@ -35,7 +37,7 @@
 		<view class="footer">
 			<view class="settlement">
 				<!-- <view class="sum">合计:<view class="money">￥{{sumPrice|toFixed}}</view></view> -->
-				<view class="btn" @tap="toPay">提交</view>
+				<view class="btn" @tap="toPay">Submit</view>
 			</view>
 		</view>
 	</view>
@@ -45,6 +47,7 @@
 	export default {
 		data() {
 			return {
+				departments: ['Internal medicine', 'Surgery', 'Pediatrics', 'Orthopedic', 'Dermatology'],
 				buylist:[],		//订单列表
 				goodsPrice:0.0,	
 				sumPrice:0.0,	
@@ -107,11 +110,15 @@
 					}
 				});
 			},
+			
+			onChange(event) {
+			      this.note_department = this.departments[event.detail.value]
+			},
 			//提交诊断结果
 			toPay(){
 				if(this.note_name == ''){
 					uni.showToast({
-						title: '用户名不能为空',
+						title: 'Username cannot be empty',
 						duration: 2000,
 						icon:'none'
 					});
@@ -119,14 +126,14 @@
 				}
 				if(this.note_password == ''){
 					uni.showToast({
-						title: '密码不能为空',
+						title: 'Password cannot be empty',
 						duration: 2000,
 						icon:'none'
 					})
 				}
 				if(this.note_name.charAt(0) == '3'){
 					uni.request({
-						url:'http://localhost:8081/insertNurse',
+						url:'http://52.77.228.143:8080/insertNurse',
 						data:{
 							name : this.note_name,
 							password: this.note_password,
@@ -154,7 +161,7 @@
 					});
 				}else{
 					uni.showToast({
-						title: '新建账号请以3开头',
+						title: 'To add a nurse account, please start with 3',
 						duration: 2000,
 						icon:'none',
 					})
@@ -315,6 +322,7 @@
 			font-size: 26upx;
 			color: #999;
 			input{
+				width: 200%;
 				font-size: 26upx;
 				color: #999;
 			}

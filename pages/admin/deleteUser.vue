@@ -5,10 +5,10 @@
 		<view class="order">
 			<view class="row">
 				<view class="left">
-					删除的账号 :
+					Username:
 				</view>
 				<view class="right">
-					<input placeholder="请填输入删除的账号名称" v-model="note_name" />
+					<input placeholder="Please enter the username you want to delete" v-model="note_name" />
 				</view>
 			</view>		
 			
@@ -19,7 +19,7 @@
 		<view class="footer">
 			<view class="settlement">
 				<!-- <view class="sum">合计:<view class="money">￥{{sumPrice|toFixed}}</view></view> -->
-				<view class="btn" @tap="toPay">提交</view>
+				<view class="btn" @tap="toPay">Submit</view>
 			</view>
 		</view>
 	</view>
@@ -95,7 +95,7 @@
 			toPay(){
 				if(this.note_name == ''){
 					uni.showToast({
-						title: '账号不能为空',
+						title: 'Username cannot be empty',
 						duration: 2000,
 						icon:'none'
 					});
@@ -103,7 +103,7 @@
 				}
 				if(this.note_name.charAt(0) == '1'){
 					uni.request({
-						url:'http://localhost:8081/deleteUser',
+						url:'http://52.77.228.143:8080/deleteUser',
 						data:{
 							name : this.note_name
 						},
@@ -129,7 +129,7 @@
 					});
 				}else{
 					uni.showToast({
-						title: '删除患者账号请以1开头',
+						title: 'To delete a patient account, please start with 1',
 						duration: 2000,
 						icon:'none',
 					})
@@ -290,6 +290,7 @@
 			font-size: 26upx;
 			color: #999;
 			input{
+				width: 200%;
 				font-size: 26upx;
 				color: #999;
 			}

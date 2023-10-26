@@ -4,13 +4,13 @@
 			<image src="/static/img/success.png"></image>
 		</view>
 		<view class="tis">
-			诊断结果提交成功
+			Submit successfully
 		</view>
 		<!-- <view class="pay-amount">
 			支付金额:{{amount}}元
 		</view> -->
 		<view class="back">
-			<view class="btn" @tap="toUser">医生中心</view>
+			<view class="btn" @tap="toUser">Doctor Page</view>
 		</view>
 	</view>
 </template>

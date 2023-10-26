@@ -8,15 +8,15 @@
 		<view class="form re">
 			<view class="username">
 				<view class="get-code" :style="{'color':getCodeBtnColor}" @click.stop="getCode()">{{getCodeText}}</view>
-				<input placeholder="请输入手机号" v-model="phoneNumber" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your phone number" v-model="phoneNumber" placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
 			<view class="code">
-				<input placeholder="请输入验证码" v-model="code" placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="Please enter your verification code" v-model="code" placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
 			<view class="password">
-				<input placeholder="请输入密码" v-model="passwd" password=true placeholder-style="color: rgba(255,255,255,0.8);"/>
+				<input placeholder="please enter your password" v-model="passwd" password=true placeholder-style="color: rgba(255,255,255,0.8);"/>
 			</view>
-			<view class="btn" @tap="doReset">重置密码</view>
+			<view class="btn" @tap="doReset">Reset Password</view>
 
 		</view>
 		
@@ -31,7 +31,7 @@
 				phoneNumber:"",
 				code:'',
 				passwd:"",
-				getCodeText:'获取验证码',
+				getCodeText:'Verify',
 				getCodeBtnColor:"#ffffff",
 				getCodeisWaiting:false
 			}

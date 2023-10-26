@@ -34,7 +34,7 @@ page {
   .username,
   .password,
   .code {
-    width: 100%;
+    width: 90%;
     height: 50px; /* 设置固定高度，或根据需求调整 */
     display: flex;
     align-items: center;
@@ -42,13 +42,16 @@ page {
     background-color: rgba($color: #ffffff, $alpha: 0.1);
     padding: 0 20px; /* 调整内边距，根据需求调整 */
 
-    input {
+    input,
+	picker {
       width: 100%;
       height: 30px; /* 设置固定高度，或根据需求调整 */
       color: rgba($color: #ffffff, $alpha: 0.8);
       font-weight: 200;
+	  font-size: 15px;
     }
   }
+  
 
   .btn {
     color: #f06c7a;

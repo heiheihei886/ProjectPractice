@@ -179,7 +179,7 @@
 		methods: {
 			getNursingRecord(){
 				uni.request({
-					url:'http://localhost:8081/getNursingRecordByUserid',
+					url:'http://52.77.228.143:8080/getNursingRecordByUserid',
 					data:{
 						userid:this.userid
 					},

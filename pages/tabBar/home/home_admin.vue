@@ -12,7 +12,7 @@
 			<!-- 搜索框 -->
 			<view class="input-box">
 				<input
-					placeholder="在线问诊"
+					placeholder="Online medical inquiry"
 					placeholder-style="color:#c0c0c0;"
 					@tap="toSearch()"
 				/>
@@ -59,7 +59,7 @@
 		
 		<!-- 健康专区 -->
 		<view class="promotion">
-			<view class="text">健康专区</view>
+			<view class="text">Health Zone</view>
 			<view class="list">
 				<view
 					class="column"
@@ -79,7 +79,7 @@
 					</view>
 					<view class="left">
 						<view class="ad">{{ row.ad }}</view>
-						<view class="into">点击进入</view>
+						<view class="into">Click to enter</view>
 					</view>
 					<view class="right"><image :src="row.img"></image></view>
 				</view>
@@ -135,13 +135,13 @@ export default {
 			],
 			// 分类菜单
 			categoryList: [
-				{ id: 1, name: '新增医生', img: '/static/img/category/1.png' },
-				{ id: 2, name: '新增护士', img: '/static/img/category/2.png' },
-				{ id: 3, name: '新增患者', img: '/static/img/category/3.png' },
-				{ id: 4, name: '删除医生', img: '/static/img/category/4.png' },
-				{ id: 5, name: '删除护士', img: '/static/img/category/5.png' },
-				{ id: 6, name: '删除患者', img: '/static/img/category/6.png' },
-				{ id: 7, name: '退出登录', img: '/static/img/category/7.png' }
+				{ id: 1, name: 'Add Doctor', img: '/static/img/category/1.png' },
+				{ id: 2, name: 'Add Nurse', img: '/static/img/category/2.png' },
+				{ id: 3, name: 'Add Patient', img: '/static/img/category/3.png' },
+				{ id: 4, name: 'Delete Doctor', img: '/static/img/category/4.png' },
+				{ id: 5, name: 'Delete Nurse', img: '/static/img/category/5.png' },
+				{ id: 6, name: 'Delete Patient', img: '/static/img/category/6.png' },
+				{ id: 7, name: 'Logout', img: '/static/img/category/7.png' }
 				// { id: 8, name: '病房出入记录', img: '/static/img/category/8.png' }
 			],
 			Promotion: [],
@@ -149,7 +149,7 @@ export default {
 			productList: [
 				
 			],
-			loadingText: '正在加载...'
+			loadingText: 'Loading...'
 		};
 	},
 	onPageScroll(e) {
@@ -166,10 +166,10 @@ export default {
 	},
 	//上拉加载，需要自己在page.json文件中配置"onReachBottomDistance"
 	onReachBottom() {
-		uni.showToast({ title: '触发上拉加载' });
+		uni.showToast({ title: 'Loading' });
 		let len = this.productList.length;
 		if (len >= 40) {
-			this.loadingText = '到底了';
+			this.loadingText = 'Bottom';
 			return false;
 		}
 		// 演示,随机加入商品,生成环境请替换为ajax请求
@@ -228,14 +228,14 @@ export default {
 			let tmpcountdown = yy + '/' + mm + '/' + dd + ' 23:59:59';
 			let tmpPromotion = [
 				{
-					title: '健康资讯',
-					ad: '每日健康',
+					title: 'Health information',
+					ad: 'Daily health',
 					img: '/static/img/s1.png',
 					countdown: false
 				},
 				{
-					title: '医生推文',
-					ad: '早日康复',
+					title: 'Doctor\'s tweet',
+					ad: 'Get well soon',
 					img: '/static/img/s2.png',
 					// countdown: tmpcountdown
 				} //countdown为目标时间，程序会获取当前时间倒数
@@ -316,7 +316,7 @@ export default {
 		},
 		//搜索跳转
 		toSearch() {
-			uni.showToast({ title: '建议跳转到新页面做搜索功能' });
+			uni.showToast({ title: 'Search' });
 		},
 		//轮播图跳转
 		toSwiper(e) {
