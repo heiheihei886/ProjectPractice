@@ -21,7 +21,7 @@ public class DiagSheetController {
     //根据患者id获取该患者的所有诊单
     @GetMapping("/getDiagSheetList")
     public List<DiagSheet> getDiagSheet2(@RequestParam("userid") int userid){
-        System.out.println("诊单列表获取成功");
+        System.out.println("Medical records obtained successfully");
         return diagSheetService.queryDiagSheet2(userid);
     }
 
@@ -29,7 +29,7 @@ public class DiagSheetController {
     @GetMapping("getDiagSheetList_doc")
     public List<DiagSheet> getDiagSheetByDepartment(@RequestParam("department") String department,
                                                     @RequestParam("userid") int userid){
-        System.out.println("未就诊诊单获取成功");
+        System.out.println("Undiagnosed medical records obtained successfully");
         return diagSheetService.getDiagSheetByDepartment(department,userid);
     }
 
@@ -37,7 +37,7 @@ public class DiagSheetController {
     @GetMapping("getDiagSheetList_doc2")
     public List<DiagSheet> getDiagSheetByDepartment2(@RequestParam("department") String department,
                                                     @RequestParam("userid") int userid){
-        System.out.println("已就诊诊单获取成功");
+        System.out.println("Diagnosed medical records obtained successfully");
         return diagSheetService.getDiagSheetByDepartment2(department,userid);
     }
 
@@ -50,7 +50,7 @@ public class DiagSheetController {
     @GetMapping("/setResult")
     public void setResult(@RequestParam("id") int id, @RequestParam("result") String result){
 
-        System.out.println("诊断结果修改成功");
+        System.out.println("Diagnosis result modified successfully");
         diagSheetService.setDiagSheetResult(id,result);
     }
 
@@ -62,7 +62,7 @@ public class DiagSheetController {
                             @RequestParam("date") String date,
                             @RequestParam("userid") int userid){
         diagSheetService.insertSheet(name,content,department,priority,date,userid);
-        System.out.println("诊单新建成功");
+        System.out.println("Medical record created successfully");
     }
 
 

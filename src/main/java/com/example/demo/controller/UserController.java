@@ -52,7 +52,7 @@ public class UserController {
     @GetMapping("/login")
     public ApiResult processLogin(@RequestParam("username") String username,
                                   @RequestParam("password") String password){
-        System.out.println("登录成功");
+        System.out.println("Login successfully");
         return userService.processLogin(username, password);
     }
 
@@ -62,13 +62,13 @@ public class UserController {
                                      @RequestParam("name") String name,
                                      @RequestParam("sex") String sex,
                                      @RequestParam("age") int age){
-        System.out.println("注册成功");
+        System.out.println("Register successfully");
         return userService.processRegister(username,password,name,sex,age);
     }
 
     @GetMapping("/deleteUser")
     public ApiResult deleteUser(@RequestParam("name")String name){
-        System.out.println("删除患者成功");
+        System.out.println("Delete patient successfully");
         return userService.deleteUser(name);
     }
 }

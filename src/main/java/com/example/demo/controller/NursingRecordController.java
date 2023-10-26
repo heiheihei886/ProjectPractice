@@ -18,13 +18,13 @@ public class NursingRecordController {
     @GetMapping("/getNursingRecordByDepartment")
     public List<NursingRecord> getNursingRecordByDepartment(@RequestParam("department") String department,
                                                             @RequestParam("userid") int userid){
-        System.out.println("护理记录获取成功");
+        System.out.println("Nursing records obtained successfully");
         return nursingRecordService.getNursingReordByDepartment(department,userid);
     }
 
     @GetMapping("/getNursingRecordById")
     public NursingRecord getNursingRecordById(@RequestParam("id") int id){
-        System.out.println("护理记录显示");
+        System.out.println("Nursing records display");
         return nursingRecordService.getNursingRecordById(id);
     }
 
