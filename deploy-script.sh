@@ -1,1 +1,1 @@
-npm install
+npm installgit checkout deploy-script.sh
