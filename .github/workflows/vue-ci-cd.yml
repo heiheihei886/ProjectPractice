@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Vue.js app
-        run: npm run build
+#      - name: Build Vue.js app
+#        run: npm run build
 
   deploy:
     needs: build
