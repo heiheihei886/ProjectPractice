@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://3.1.27.251:3306/medical_system?autoReconnect=true&allowPublicKeyRetrieval=true&useUnicode=true & characterEncoding=utf-8 &
+    url: jdbc:mysql://18.142.255.131:3306/medical_system?autoReconnect=true&allowPublicKeyRetrieval=true&useUnicode=true & characterEncoding=utf-8 &
           useSSL=false & serverTimezone=Asia/Shanghai
     username: admin
     password: 111111
