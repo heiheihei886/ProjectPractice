@@ -31,14 +31,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up CodeQL
-        uses: github/codeql-action/setup@v2
+      - name: Download CodeQL
+        run: |
+          wget -qO codeql.zip https://github.com/github/codeql-action/releases/latest/download/codeql-runner-linux.zip
+          unzip -qq codeql.zip
+          mv codeql-runner/codeql $RUNNER_TOOL_CACHE/CodeQL/0.0.0-unknown/
+
+      - name: Initialize CodeQL
+        run: $RUNNER_TOOL_CACHE/CodeQL/0.0.0-unknown/init
 
       - name: Analyze code with CodeQL
-        uses: github/codeql-action/analyze@v2
+        run: $RUNNER_TOOL_CACHE/CodeQL/0.0.0-unknown/codeql analyze --init
 
   deploy:
-    needs: build
+    needs: security-test
     runs-on: ubuntu-latest
 
     steps:
