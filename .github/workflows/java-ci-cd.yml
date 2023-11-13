@@ -26,6 +26,17 @@ jobs:
       - name: Run Tests
         run: mvn test
 
+  security-test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up CodeQL
+        uses: github/codeql-action/setup@v2
+
+      - name: Analyze code with CodeQL
+        uses: github/codeql-action/analyze@v2
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
