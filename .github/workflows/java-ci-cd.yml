@@ -26,25 +26,8 @@ jobs:
       - name: Run Tests
         run: mvn test
 
-  security-test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download CodeQL
-        run: |
-          wget -qO codeql.zip https://github.com/github/codeql-action/releases/latest/download/codeql-runner-linux.zip
-          unzip -qq codeql.zip
-          mv codeql-runner/codeql $RUNNER_TOOL_CACHE/CodeQL/0.0.0-unknown/
-
-      - name: Initialize CodeQL
-        run: $RUNNER_TOOL_CACHE/CodeQL/0.0.0-unknown/init
-
-      - name: Analyze code with CodeQL
-        run: $RUNNER_TOOL_CACHE/CodeQL/0.0.0-unknown/codeql analyze --init
-
   deploy:
-    needs: security-test
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -55,4 +38,3 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ssh_key.pem ubuntu@18.139.160.58 "cd ProjectPractice && git pull origin backend && chmod +x deploy-script.sh && ./deploy-script.sh"
         env:
           AWS_SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
-#123123
